@@ -2,3 +2,8 @@
 /env
 /config/webserver.py
 /webserver/db.sqlite3
+/configs/mail.py
+/webserver/ipoWatcher/data/*
+__pycache__
+*.pyc
+/log/logs/*
