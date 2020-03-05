@@ -1,0 +1,4 @@
+/.idea
+/env
+/config/webserver.py
+/webserver/db.sqlite3
