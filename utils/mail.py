@@ -23,6 +23,3 @@ def send_mail(subject, content, receiver):
         log.error(str(e))
         log.error(traceback.format_exc())
 
-
-if __name__ == "__main__":
-    send_mail("test","ttttest","wangyg@tedavc.com.cn")
