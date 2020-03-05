@@ -77,6 +77,7 @@ def dowload_pdf_and_convert():
                         for page in pdf.pages:
                             new_f.write(page.extract_text())
                             log.debug("converting page: {} / {}".format(page_cnt, len(pdf.pages)))
+                            page_cnt += 1
 
                 log.info("{} had been converted.".format(project.title))
             except:
