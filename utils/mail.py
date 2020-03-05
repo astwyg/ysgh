@@ -13,8 +13,8 @@ def send_mail(subject, content, receiver):
     message['Subject'] = Header(subject, 'utf-8')
 
     try:
-        smtpObj = smtplib.SMTP()
-        smtpObj.connect(config.HOST, 25)  # 25 为 SMTP 端口号
+        smtpObj = smtplib.SMTP_SSL(config.HOST)
+        smtpObj.ehlo(config.HOST)
         smtpObj.login(config.USER, config.PASSWD)
         smtpObj.sendmail(config.USER, receiver, message.as_string())
         log.info("mail sent success.")
@@ -22,3 +22,7 @@ def send_mail(subject, content, receiver):
         log.error("mail sent failed")
         log.error(str(e))
         log.error(traceback.format_exc())
+
+
+if __name__ == "__main__":
+    send_mail("test","ttttest","wangyg@tedavc.com.cn")
