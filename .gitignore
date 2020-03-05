@@ -6,4 +6,5 @@
 /webserver/ipoWatcher/data/*
 __pycache__
 *.pyc
-/log/logs/*
+/log/logs/*.txt
+/configs/webserver.py
