@@ -91,6 +91,8 @@ def check_and_notify():
     mails = []
     watchers = Watcher.objects.filter(available=True)
     for project in projects:
+        message = "{}:\n".format(time.strftime("%Y/%m/%d"))
+        mail_flag = False
         for watcher in watchers:
             keyword_cnt = {}
             keywords = watcher.keywords.split(",")
@@ -102,11 +104,12 @@ def check_and_notify():
             for k,v in keyword_cnt.items():
                 keyword_threshold_cnt += v
             if keyword_threshold_cnt >= watcher.threshold:
-                message = "{}:\n".format(time.strftime("%Y/%m/%d"))
+                mail_flag = True
                 message = message + "-"*8 + "\n"
                 message = message + project.title + "/" + project.link + "\n"
                 for k,v in keyword_cnt.items():
                     message = message + k + " : " + str(v) + "\n"
+            if mail_flag:
                 mails.append({
                     "message": message,
                     "to": watcher.email
