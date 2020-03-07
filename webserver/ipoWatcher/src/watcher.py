@@ -88,7 +88,7 @@ def dowload_pdf_and_convert():
 
 def check_and_notify():
     projects = Project.objects.exclude(checked = True)
-    mails = []
+    mails = {}
     watchers = Watcher.objects.filter(available=True)
     for project in projects:
         message = "{}:\n".format(time.strftime("%Y/%m/%d"))
@@ -110,17 +110,17 @@ def check_and_notify():
                 for k,v in keyword_cnt.items():
                     message = message + k + " : " + str(v) + "\n"
             if mail_flag:
-                mails.append({
-                    "message": message,
-                    "to": watcher.email
-                })
+                if mails.get(watcher.email):
+                    mails[watcher.email] += message
+                else:
+                    mails[watcher.email] = message
         project.checked = True
         project.save()
-    for mail in mails:
+    for email,message in mails.items():
         send_mail(
             "科创板新股材料自动监测",
-            mail.get("message"),
-            mail.get("to")
+            message,
+            email
         )
 
 
