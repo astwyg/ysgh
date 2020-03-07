@@ -101,7 +101,7 @@ def check_and_notify():
             keyword_threshold_cnt = 0
             for k,v in keyword_cnt.items():
                 keyword_threshold_cnt += v
-            if keyword_threshold_cnt >= watcher.keyword_threshold:
+            if keyword_threshold_cnt >= watcher.threshold:
                 message = "{}:\n".format(time.strftime("%Y/%m/%d"))
                 message = message + "-"*8 + "\n"
                 message = message + project.title + "/" + project.link + "\n"
@@ -111,6 +111,8 @@ def check_and_notify():
                     "message": message,
                     "to": watcher.email
                 })
+        project.checked = True
+        project.save()
     for mail in mails:
         send_mail(
             "科创板新股材料自动监测",
