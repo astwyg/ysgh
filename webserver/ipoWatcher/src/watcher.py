@@ -94,7 +94,7 @@ def check_and_notify():
         for watcher in watchers:
             keyword_cnt = {}
             keywords = watcher.keywords.split(",")
-            with open("..\\data\\{}".format(project.get("title") + ".txt"),"r", encoding="utf-8") as f:
+            with open("..\\data\\{}".format(project.title + ".txt"),"r", encoding="utf-8") as f:
                 content = f.read()
                 for keyword in keywords:
                     keyword_cnt[keyword] = content.count(keyword)
@@ -104,7 +104,7 @@ def check_and_notify():
             if keyword_threshold_cnt >= watcher.keyword_threshold:
                 message = "{}:\n".format(time.strftime("%Y/%m/%d"))
                 message = message + "-"*8 + "\n"
-                message = message + project["title"] + "/" + project["link"] + "\n"
+                message = message + project.title + "/" + project.link + "\n"
                 for k,v in keyword_cnt.items():
                     message = message + k + " : " + str(v) + "\n"
                 mails.append({
