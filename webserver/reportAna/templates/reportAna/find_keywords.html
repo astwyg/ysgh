@@ -1,0 +1,26 @@
+{% extends "pages/base.html" %}
+
+{% block body %}
+<form class="form-inline" action="/reportAna/" method="GET">
+  <div class="form-group col-auto">
+    <label for="keywords">关键字:(用逗号隔开)</label>
+    <input type="text" class="form-control" id="keywords" name="keywords">
+  </div>
+  <div class="form-group col-auto">
+    <label for="path">路径</label>
+    <select id="path" name="path" class="form-control">
+      <option id="reportAna\\data\\annual_report_2018_txt" selected>reportAna\\data\\annual_report_2018_txt</option>
+    </select>
+  </div>
+    <div class="form-group col-auto">
+      <button type="submit" class="btn btn-primary">搜索</button>
+    </div>
+</form>
+
+{% if msg %}
+  <br/>
+  <div class="jumbotron">
+   <p>{{msg}}</p>
+  </div>
+{% endif %}
+{% endblock %}
