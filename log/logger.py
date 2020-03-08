@@ -1,3 +1,8 @@
+'''
+USE:
+from log.logger import logger as log
+'''
+
 import logging, os
 import logging.handlers
 import datetime,time

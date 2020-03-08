@@ -16,7 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import pages.views as pages_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r"", pages_views.index),
+
     path('ipoWatcher/', include('ipoWatcher.urls')),
+    path('reportAna/', include('reportAna.urls')),
 ]
