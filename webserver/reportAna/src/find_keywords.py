@@ -11,7 +11,11 @@ def find_keyword(keyword, path):
                 content = fp.read()
                 keyword_times = content.count(keyword)
                 if keyword_times:
-                    msg += ("{}在{}中出现{}次".format(keyword,f,keyword_times)) + "\n"
+                    msg += ('{}在<a target="_blank" href="https://vip.stock.finance.sina.com.cn/corp/go.php/vCB_Bulletin/stockid/{}/page_type/ndbg.phtml">{}</a>中出现{}次'.format(
+                        keyword,
+                        f.split("_")[0],
+                        f,
+                        keyword_times)) + "<br/>"
     return msg
 
 

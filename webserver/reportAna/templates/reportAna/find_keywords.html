@@ -1,7 +1,7 @@
 {% extends "pages/base.html" %}
 
 {% block body %}
-<form class="form-inline" action="/reportAna/" method="GET">
+<form id="infoForm" class="form-inline" action="/reportAna/" method="GET">
   <div class="form-group col-auto">
     <label for="keywords">关键字:(用逗号隔开)</label>
     <input type="text" class="form-control" id="keywords" name="keywords">
@@ -13,14 +13,34 @@
     </select>
   </div>
     <div class="form-group col-auto">
-      <button type="submit" class="btn btn-primary">搜索</button>
+      <button class="btn btn-primary" id="doSearch">搜索</button>
     </div>
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="waitModal" tabindex="-1" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        等着
+      </div>
+    </div>
+  </div>
+</div>
 
 {% if msg %}
   <br/>
   <div class="jumbotron">
-   <p style="white-space: pre-line;">{{msg}}</p>
+   <p>{{msg|safe}}</p>
   </div>
 {% endif %}
+{% endblock %}
+
+{% block script %}
+<script type="application/javascript">
+  $("#doSearch").click(function () {
+      $("#waitModal").modal();
+      //$("#infoForm").submit();
+  })
+</script>
 {% endblock %}
